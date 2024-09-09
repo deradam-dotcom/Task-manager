@@ -17,14 +17,13 @@ type Dashboard = {
 type TaskManagerState = {
   dashboards: Dashboard[];
   createDashboard: (title: string, color:string) => void;
+  updateDashboardTitle: (dashboardId: string, newTitle: string) => void;
   createTask: (dashboardId: string, taskTitle: string) => void;
+  updateTaskTitle: (dashboardId: string, taskId: string, newTitle: string) => void; 
   toggleTaskCompletion: (dashboardId: string, taskId: string) => void;
   updateTaskDescription: (dashboardId: string, taskId: string, description: string) => void;
-  clearTaskDescription: (dashboardId: string, taskId: string) => void;
   deleteTask: (dashboardId: string, taskId: string) => void;
   deleteDashboard: (dashboardId: string) => void;
-  updateTaskTitle: (dashboardId: string, taskId: string, newTitle: string) => void; 
-  updateDashboardTitle: (dashboardId: string, newTitle: string) => void;
 }
 
 const TaskManagerContext = createContext<TaskManagerState | undefined>(undefined);
@@ -111,22 +110,7 @@ export const TaskManagerProvider: React.FC<{ children: React.ReactNode }> = ({ c
       )
     );
   };
-
-  const clearTaskDescription = (dashboardId: string, taskId: string) => {
-    setDashboards((prev) =>
-      prev.map((dashboard) =>
-        dashboard.id === dashboardId
-          ? {
-              ...dashboard,
-              tasks: dashboard.tasks.map((task) =>
-                task.id === taskId ? { ...task, description: '' } : task
-              ),
-            }
-          : dashboard
-      )
-    );
-  };
-
+  
   const deleteDashboard = (dashboardId: string) => {
     setDashboards((prev) => prev.filter((dashboard) => dashboard.id !== dashboardId));
   };
@@ -140,7 +124,6 @@ export const TaskManagerProvider: React.FC<{ children: React.ReactNode }> = ({ c
         createTask,
         updateTaskTitle,
         updateTaskDescription,
-        clearTaskDescription,
         toggleTaskCompletion,
         deleteTask,
         deleteDashboard,
