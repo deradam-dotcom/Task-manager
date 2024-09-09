@@ -12,7 +12,7 @@ export const App = () => {
         <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
         <CreateDashboardForm />
       </div>
-      <div className="px-8 mt-20 flex flex-col md:flex-row space-y-4 space-x-0 md:space-x-4 md:space-y-0">
+      <div className="px-8 mt-20 flex flex-col md:flex-row flex-wrap space-y-4 space-x-0 md:gap-x-4 md:space-y-0 gap-y-4">
         {dashboards.map((dashboard) => (
           <Dashboard key={dashboard.id} dashboardId={dashboard.id} />
         ))}
