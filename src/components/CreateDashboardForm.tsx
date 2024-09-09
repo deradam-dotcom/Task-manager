@@ -7,9 +7,10 @@ import ColorPicker from "./Colorpicker";
 export const CreateDashboardForm = () => {
   const [showInput, setShowInput] = useState<boolean>(false);
   const [focus, setFocus] = useState<boolean>(false);
-  const { createDashboard } = useTaskManager();
   const [dashboardTitle, setDashboardTitle] = useState<string>("");
   const [dashboardColor, setDashboardColor] = useState<string>("");
+  
+  const { createDashboard } = useTaskManager();
 
   const handleCreateDashboard = () => {
     if (dashboardTitle.trim() === "") return;
