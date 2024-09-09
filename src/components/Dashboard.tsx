@@ -34,7 +34,7 @@ const Dashboard: React.FC<DashboardProps> = ({ dashboardId }) => {
       <div className="flex justify-between items-start">
         <h2
           className="text-xl w-fit px-4 py-1 rounded-lg text-white font-bold mb-4"
-          style={{ backgroundColor: dashboard.color }}
+          style={{ backgroundColor: dashboard.color ? dashboard.color : "#000000" }}
         >
           {dashboard.title}{" "}
         </h2>
