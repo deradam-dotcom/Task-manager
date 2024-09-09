@@ -10,18 +10,21 @@ type Task = {
 type Dashboard = {
   id: string;
   title: string;
+  color: string;
   tasks: Task[];
 };
 
 type TaskManagerState = {
   dashboards: Dashboard[];
-  createDashboard: (title: string) => void;
+  createDashboard: (title: string, color:string) => void;
   createTask: (dashboardId: string, taskTitle: string) => void;
   toggleTaskCompletion: (dashboardId: string, taskId: string) => void;
   updateTaskDescription: (dashboardId: string, taskId: string, description: string) => void;
   clearTaskDescription: (dashboardId: string, taskId: string) => void;
   deleteTask: (dashboardId: string, taskId: string) => void;
   deleteDashboard: (dashboardId: string) => void;
+  updateTaskTitle: (dashboardId: string, taskId: string, newTitle: string) => void; 
+  updateDashboardTitle: (dashboardId: string, newTitle: string) => void;
 }
 
 const TaskManagerContext = createContext<TaskManagerState | undefined>(undefined);
@@ -30,8 +33,33 @@ const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(
 export const TaskManagerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [dashboards, setDashboards] = useState<Dashboard[]>([]);
 
-  const createDashboard = (title: string) => {
-    setDashboards([...dashboards, { id: generateUniqueId(), title, tasks: [] }]);
+  const createDashboard = (title: string, color:string) => {
+    setDashboards([...dashboards, { id: generateUniqueId(), title, color, tasks: [] }]);
+  };
+
+  const updateDashboardTitle = (dashboardId: string, newTitle: string) => {
+    setDashboards((prev) =>
+      prev.map((dashboard) =>
+        dashboard.id === dashboardId
+          ? { ...dashboard, title: newTitle }
+          : dashboard
+      )
+    );
+  };
+
+  const updateTaskTitle = (dashboardId: string, taskId: string, newTitle: string) => {
+    setDashboards((prev) =>
+      prev.map((dashboard) =>
+        dashboard.id === dashboardId
+          ? {
+              ...dashboard,
+              tasks: dashboard.tasks.map((task) =>
+                task.id === taskId ? { ...task, title: newTitle } : task
+              ),
+            }
+          : dashboard
+      )
+    );
   };
 
   const createTask = (dashboardId: string, taskTitle: string, taskDescription: string = '') => {
@@ -108,7 +136,9 @@ export const TaskManagerProvider: React.FC<{ children: React.ReactNode }> = ({ c
       value={{
         dashboards,
         createDashboard,
+        updateDashboardTitle,
         createTask,
+        updateTaskTitle,
         updateTaskDescription,
         clearTaskDescription,
         toggleTaskCompletion,
