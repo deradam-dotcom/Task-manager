@@ -55,7 +55,7 @@ const Dashboard: React.FC<DashboardProps> = ({ dashboardId }) => {
           type="text"
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
-          className="border px-4 py-2 rounded-md outline-none focus:border-blue-500"
+          className="border px-4 py-2 rounded-md outline-none w-full md:w-auto focus:border-blue-500"
           placeholder="New Task"
         />
         <button
