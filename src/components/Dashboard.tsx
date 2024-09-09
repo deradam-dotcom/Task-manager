@@ -13,20 +13,21 @@ const Dashboard: React.FC<DashboardProps> = ({ dashboardId }) => {
 
   const [taskTitle, setTaskTitle] = useState<string>('');
 
-  if (!dashboard) return <p>Dashboard not found!</p>;
-
+  
   const handleCreateTask = () => {
     if (taskTitle.trim() !== '') {
       createTask(dashboardId, taskTitle);
       setTaskTitle('');
     }
   };
-
+  
   const deleteCurrentDashboard = (dashboardId: string) => {
     return () => {
       deleteDashboard(dashboardId);
     };
   };
+  
+  if (!dashboard) return <p>Dashboard not found!</p>;
 
   return (
     <div className="flex w-fit flex-col p-4 bg-white rounded-lg border-2 border-grey-200">
