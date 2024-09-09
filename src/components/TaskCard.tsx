@@ -49,8 +49,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskId, dashboardId }) => {
     .filter((line) => line.trim() !== "");
 
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-between items-center p-2 bg-white rounded-md shadow-sm">
+    <div className="flex flex-col shadow-sm py-2">
+      <div className="flex justify-between items-center p-2 bg-white rounded-md">
         {editTitle ? (
           <>
             <TextInput
@@ -99,7 +99,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskId, dashboardId }) => {
         </div>
       </div>
       {addDescription ? (
-        <div className="inline-flex items-center justify-between shadow-sm p-2 mt-2">
+        <div className="inline-flex items-center justify-between  p-2 mt-2">
           <textarea
             cols={35}
             rows={3}
