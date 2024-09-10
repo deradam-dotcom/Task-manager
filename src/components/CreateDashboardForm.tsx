@@ -51,7 +51,7 @@ export const CreateDashboardForm = () => {
               value={dashboardTitle}
               onChange={(e) => setDashboardTitle(e.target.value)}
               placeholder="Enter group name..."
-              className="outline-none focus:none rounded-xl"
+              className="outline-none focus:none py-1"
             />
             <button
               onClick={handleCreateDashboard}
