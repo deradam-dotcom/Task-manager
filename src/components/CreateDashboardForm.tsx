@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTaskManager } from "../context/TaskManagerContext";
 import { CirclePlus } from "lucide-react";
 import TextInput from "./TextInput";
-import ColorPicker from "./Colorpicker";
+import ColorPicker from "./ColorPicker";
 
 export const CreateDashboardForm = () => {
   const [showInput, setShowInput] = useState<boolean>(false);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CircleX } from "lucide-react";
 import { useTaskManager } from "../context/TaskManagerContext";
 import TaskCard from "./TaskCard";
+import TextInput from "./TextInput";
 
 type DashboardProps = {
   dashboardId: string;
@@ -34,7 +35,9 @@ const Dashboard: React.FC<DashboardProps> = ({ dashboardId }) => {
       <div className="flex justify-between items-start">
         <h2
           className="text-xl w-fit px-4 py-1 rounded-lg text-white font-bold mb-4"
-          style={{ backgroundColor: dashboard.color ? dashboard.color : "#000000" }}
+          style={{
+            backgroundColor: dashboard.color ? dashboard.color : "#000000",
+          }}
         >
           {dashboard.title}{" "}
         </h2>
@@ -51,8 +54,7 @@ const Dashboard: React.FC<DashboardProps> = ({ dashboardId }) => {
         ))}
       </div>
       <div className="mt-4">
-        <input
-          type="text"
+        <TextInput
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
           className="border px-4 py-2 rounded-md outline-none w-full md:w-auto focus:border-blue-500"
