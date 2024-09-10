@@ -43,7 +43,7 @@ export const CreateDashboardForm = () => {
       {showInput && (
         <div className="flex-col w-fit">
           <div
-            className={`flex items-center w-fit mb-1 border border-gray-300 rounded-md p-2 ${focus ? "border-blue-500" : ""}`}
+            className={`flex items-center w-fit mb-1 border rounded-md p-2 ${focus ? "border-blue-400" : "border-gray-300"}`}
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
           >
